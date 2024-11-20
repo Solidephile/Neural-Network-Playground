@@ -1,8 +1,8 @@
 import sys
-import math
 import numpy as np
 import pickle
 import gzip
+import webbrowser
 import core
 import dataset
 
@@ -124,7 +124,7 @@ class Board(QWidget):
                     x * self.pixel_size + self.pixel_size / 2,
                     y * self.pixel_size + self.pixel_size / 2,
                 ]
-                if math.dist(pos_1, pos_2) < 1.5 * self.pixel_size:
+                if np.linalg.norm(np.array(pos_1) - np.array(pos_2)) < 1.5 * self.pixel_size:
                     if self.mouse_status == 1:
                         self.pixels[x][y].painted()
                     elif self.mouse_status == -1:
@@ -188,8 +188,7 @@ class PredictInterface(SubInterface):
         self.board = Board(16)
 
         # Init Labels on the left
-        self.predict_result = BodyLabel("Predict result:")
-        self.predict_result.setStyleSheet("font-size: 18px;")
+        self.predict_result = DisplayLabel("Predict result:")
 
         self.load_model_label = BodyLabel("Loaded Model:")
 
@@ -576,6 +575,41 @@ class TrainInterface(SubInterface):
         self.progress_bar_label.setText("Training finished.    ")
 
 
+# About Interface
+class AboutInterface(SubInterface):
+    def __init__(self, name, parent=None):
+        super().__init__(name, parent)
+        self.parent = parent
+        self.setContentsMargins(5, 5, 5, 5)
+        self.main_layout = QVBoxLayout()
+        self.setLayout(self.main_layout)
+
+        self.title = LargeTitleLabel("About")
+
+        self.content = BodyLabel(
+            """
+This is an application for building and training a handwritten digit recognition neural network. You can conveniently tweak varuious parameters to build and train your own neural network. The trained model can be saved and loaded for later use.
+The neural network is a simple Artificial Neural Network (ANN) based on book 'Neural Networks from Scratch in Python' by Harrison Kinsley & Daniel Kukieła.
+The application interface is built using PyQT5 and QFluentWidgets, a fluent design component library based on PyQT.
+The application is only for educational purposes and should not be used for any malicious purposes.
+The source code of the application is available on GitHub.
+LICENSE: GPL-3.0
+            """
+        )
+        self.content.setIndent(-1)
+        self.content.setWordWrap(True)
+        self.content.setAlignment(Qt.AlignTop)
+
+        self.hyperlink_button = PrimaryPushButton(text="GitHub", icon=FIF.GITHUB, parent=self)
+        self.hyperlink_button.clicked.connect(lambda: webbrowser.open("https://github.com/Solidephile"))
+
+        self.main_layout.addWidget(self.title)
+        self.main_layout.addWidget(self.content)
+        self.main_layout.addWidget(self.hyperlink_button)
+        self.main_layout.setStretch(0, 0)
+        self.main_layout.setStretch(1, 1)
+
+
 # Train info card
 class TrainInfoCard(HeaderCardWidget):
     def __init__(self, parent=None):
@@ -616,15 +650,6 @@ class MainWindow(FluentWindow):
         self.setWindowIcon(QIcon("resources/icon.png"))
         self.setWindowTitle("Neural Network Playground - by Solidephile")
 
-        # Add toggle theme button
-        self.navigationInterface.addItem(
-            "theme_toggle",
-            FIF.CONSTRACT,
-            "Toggle Theme",
-            onClick=self.change_theme,
-            position=NavigationItemPosition.BOTTOM,
-        )
-
     def init_ui(self):
         # Init predict interface
         self.predict_interface = PredictInterface("predict", self)
@@ -633,6 +658,19 @@ class MainWindow(FluentWindow):
         # Init train interface
         self.train_interface = TrainInterface("train", self)
         self.addSubInterface(self.train_interface, icon=FIF.SPEED_HIGH, text="TRAIN")
+
+        # Init about interface
+        self.about_interface = AboutInterface("about", self)
+        self.addSubInterface(self.about_interface, icon=FIF.INFO, text="ABOUT", position=NavigationItemPosition.BOTTOM)
+
+        # Add toggle theme button
+        self.navigationInterface.addItem(
+            "theme_toggle",
+            FIF.CONSTRACT,
+            "TOGGLE THEME",
+            onClick=self.change_theme,
+            position=NavigationItemPosition.BOTTOM,
+        )
 
     def change_theme(self):
         toggleTheme()
