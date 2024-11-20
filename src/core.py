@@ -792,7 +792,7 @@ class Model:
         # Main training loop
         for epoch in range(1, epochs + 1):
             # Print epoch number
-            #print(f"epoch: {epoch}")
+            # print(f"epoch: {epoch}")
 
             # Reset accumulated values in loss and accuracy objects
             self.loss.new_pass()
@@ -854,7 +854,6 @@ class Model:
             epoch_loss = epoch_data_loss + epoch_regularization_loss
             epoch_accuracy = self.accuracy.calculate_accumulated()
 
-
             # print(
             #     "training, "
             #     + f"acc: {epoch_accuracy:.3f}, "
@@ -869,7 +868,11 @@ class Model:
                 progress_callback.emit(epoch)
 
             progress_data_callback.emit(
-                epoch_accuracy, epoch_loss, epoch_data_loss, epoch_regularization_loss, self.optimizer.current_learning_rate
+                epoch_accuracy,
+                epoch_loss,
+                epoch_data_loss,
+                epoch_regularization_loss,
+                self.optimizer.current_learning_rate,
             )
 
             # If there is the validation data
@@ -973,7 +976,7 @@ class Model:
         validation_accuracy = self.accuracy.calculate_accumulated()
 
         # Print a summary
-        #print("validation, " + f"acc: {validation_accuracy:.3f}, " + f"loss: {validation_loss:.3f}")
+        # print("validation, " + f"acc: {validation_accuracy:.3f}, " + f"loss: {validation_loss:.3f}")
         validation_callback.emit(validation_accuracy, validation_loss)
 
     # Predicts on the samples

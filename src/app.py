@@ -6,15 +6,41 @@ import webbrowser
 import core
 import dataset
 
-from PyQt5.QtGui import *
-from PyQt5.QtWidgets import *
-from PyQt5.QtCore import *
+from PyQt5.QtGui import QStandardItemModel, QIcon
+from PyQt5.QtWidgets import (
+    QWidget,
+    QApplication,
+    QGridLayout,
+    QHBoxLayout,
+    QVBoxLayout,
+    QLabel,
+    QHeaderView,
+    QAbstractItemView,
+    QTableWidgetItem,
+    QFileDialog,
+)
+from PyQt5.QtCore import QThread, Qt, pyqtSignal
 
-from qfluentwidgets.common import *
-from qfluentwidgets.components.layout import *
-from qfluentwidgets.components.widgets import *
-from qfluentwidgets.components.navigation import *
-from qfluentwidgets.window import *
+from qfluentwidgets.common import toggleTheme
+from qfluentwidgets.components.widgets import (
+    DisplayLabel,
+    BodyLabel,
+    LargeTitleLabel,
+    LineEdit,
+    PrimaryPushButton,
+    PushButton,
+    TableWidget,
+    TableView,
+    ComboBox,
+    SpinBox,
+    DoubleSpinBox,
+    ProgressBar,
+    InfoBar,
+    HorizontalSeparator,
+    HeaderCardWidget,
+)
+from qfluentwidgets.components.navigation import NavigationItemPosition
+from qfluentwidgets.window import FluentWindow
 from qfluentwidgets import FluentIcon as FIF
 
 
@@ -589,11 +615,15 @@ class AboutInterface(SubInterface):
         self.content = BodyLabel(
             """
 This is an application for building and training a handwritten digit recognition neural network. You can conveniently tweak varuious parameters to build and train your own neural network. The trained model can be saved and loaded for later use.
+
 The neural network is a simple Artificial Neural Network (ANN) based on book 'Neural Networks from Scratch in Python' by Harrison Kinsley & Daniel Kukieła.
+
 The application interface is built using PyQT5 and QFluentWidgets, a fluent design component library based on PyQT.
+
 The application is only for educational purposes and should not be used for any malicious purposes.
+
 The source code of the application is available on GitHub.
-LICENSE: GPL-3.0
+
             """
         )
         self.content.setIndent(-1)
