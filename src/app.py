@@ -4,6 +4,8 @@ import pickle
 import gzip
 import webbrowser
 
+from ordered_set import T
+
 import core
 
 from PyQt5.QtGui import QStandardItemModel, QIcon
@@ -23,7 +25,7 @@ from PyQt5.QtCore import QThread, Qt, pyqtSignal
 
 from qfluentwidgets.common import toggleTheme
 from qfluentwidgets.components.widgets import (
-    DisplayLabel,
+    SubtitleLabel,
     BodyLabel,
     LargeTitleLabel,
     LineEdit,
@@ -214,7 +216,7 @@ class PredictInterface(SubInterface):
         self.board = Board(16)
 
         # Init Labels on the left
-        self.predict_result = DisplayLabel("Predict result:")
+        self.predict_result = SubtitleLabel("Predict result:")
 
         self.load_model_label = BodyLabel("Loaded Model:")
 
@@ -272,7 +274,7 @@ class PredictInterface(SubInterface):
 
     def predict(self):
         if self.parent.model is None:
-            self.update_model()
+            self.parent.update_model()
 
         data = self.board.get_data()
 
@@ -676,7 +678,6 @@ class MainWindow(FluentWindow):
         w, h = desktop.width(), desktop.height()
         self.move(w // 2 - self.width() // 2, h // 2 - self.height() // 2)
         self.setMinimumWidth(720)
-        self.setStyleSheet("font-size: 14px")
         self.setWindowIcon(QIcon("resources/icon.png"))
         self.setWindowTitle("Neural Network Playground - by Solidephile")
 
