@@ -13,7 +13,7 @@ The application has a simple GUI with two main interfaces: the predict interface
     Users can write a digit in a writing board in this interface and click the "Predict" button to see the predicted digit using the loaded or trained model. The confidences of each number are also displayed. Note that the predicted result may not be correct for various reasons.
 
 2. **Train Interface**:
-    The train interface offers a convenient way to dynamically modify and train your neural network. Before training, click "Load Dataset" button to load the MNIST dataset. Then using the "Add Layer" and "Remove Layer" buttons to modify the structure of the neural network. The neuron counts and activation function of each hidden layer can also be modified. 
+    The train interface offers a convenient way to dynamically modify and train your neural network. Before training, click "Load Dataset" button to load the MNIST dataset. Then use the "Add Layer" and "Remove Layer" buttons to modify the structure of the neural network. The neuron counts and activation function of each hidden layer can also be modified. 
 
     After everything is set, click "Train" button to start the training process. The training progress and info will be displayed. After the training is done, the user can test the trained model in the predict interface. Note that when you tweaked the model params after training, the model's trained weights and biases will be reset.
 
