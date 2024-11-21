@@ -676,7 +676,7 @@ class MainWindow(FluentWindow):
         w, h = desktop.width(), desktop.height()
         self.move(w // 2 - self.width() // 2, h // 2 - self.height() // 2)
         self.setMinimumWidth(720)
-        self.setWindowIcon(QIcon("resources/icon.png"))
+        self.setWindowIcon(QIcon("resources/icon.ico"))
         self.setWindowTitle("Neural Network Playground - by Solidephile")
 
     def init_ui(self):
