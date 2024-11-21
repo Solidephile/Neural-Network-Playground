@@ -20,9 +20,9 @@ The application has a simple GUI with two main interfaces: the predict interface
 ## Notes
 Due to the nature of the MNIST dataset, the trained model may not perform well on your writing input for various reasons like the varying size and position of the number and different writing styles. 
 
-Since the application uses PyQt5 library, the size of the release may be a little large. If you have any methods to reduce the size of the application, please write an issue.
+Since the application uses PyQt5 library, the size of the release may be a little large. If you have any methods to reduce the size of the application, please create an issue.
 
-I'm still working on improving the application and adding more features. If you have any suggestions or feature requests, please write an issue.
+I'm still working on improving the application and adding more features. If you have any suggestions or feature requests, please create an issue.
 
 ## Credits
 This artitecture of the neural network is based on the book [Neural Networks from Scratch in Python](https://nnfs.io/) by Harrison Kinsley & Daniel Kukieła. The interface is created using PyQt5 library and [QFluentWidgets](https://github.com/zhiyiYo/PyQt-Fluent-Widgets) library by zhiyiYo.
