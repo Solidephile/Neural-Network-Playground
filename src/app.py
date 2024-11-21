@@ -4,8 +4,6 @@ import pickle
 import gzip
 import webbrowser
 
-from ordered_set import T
-
 import core
 
 from PyQt5.QtGui import QStandardItemModel, QIcon
