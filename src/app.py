@@ -3,8 +3,8 @@ import numpy as np
 import pickle
 import gzip
 import webbrowser
+
 import core
-import dataset
 
 from PyQt5.QtGui import QStandardItemModel, QIcon
 from PyQt5.QtWidgets import (
@@ -45,22 +45,22 @@ from qfluentwidgets import FluentIcon as FIF
 
 
 # Dataset thread (deprecated, may implement multithread reading later)
-class DatasetThread(QThread):
-    value_change = pyqtSignal(int)
-    finished = pyqtSignal()
+# class DatasetThread(QThread):
+#     value_change = pyqtSignal(int)
+#     finished = pyqtSignal()
 
-    def __init__(self, parent):
-        super(DatasetThread, self).__init__()
-        self.parent = parent
+#     def __init__(self, parent):
+#         super(DatasetThread, self).__init__()
+#         self.parent = parent
 
-    def run(self):
-        self.parent.X, self.parent.Y, self.parent.X_test, self.parent.Y_test = dataset.create_data_mnist(
-            "mnist_images", self.value_change
-        )
-        self.parent.X, self.parent.Y, self.parent.X_test, self.parent.Y_test = dataset.preprocess_dataset(
-            self.parent.X, self.parent.Y, self.parent.X_test, self.parent.Y_test
-        )
-        self.finished.emit()
+#     def run(self):
+#         self.parent.X, self.parent.Y, self.parent.X_test, self.parent.Y_test = dataset.create_data_mnist(
+#             "mnist_images", self.value_change
+#         )
+#         self.parent.X, self.parent.Y, self.parent.X_test, self.parent.Y_test = dataset.preprocess_dataset(
+#             self.parent.X, self.parent.Y, self.parent.X_test, self.parent.Y_test
+#         )
+#         self.finished.emit()
 
 
 # Trainging thread
@@ -631,7 +631,7 @@ The source code of the application is available on GitHub.
         self.content.setAlignment(Qt.AlignTop)
 
         self.hyperlink_button = PrimaryPushButton(text="GitHub", icon=FIF.GITHUB, parent=self)
-        self.hyperlink_button.clicked.connect(lambda: webbrowser.open("https://github.com/Solidephile"))
+        self.hyperlink_button.clicked.connect(lambda: webbrowser.open("https://github.com/Solidephile/Neural-Network-Playground"))
 
         self.main_layout.addWidget(self.title)
         self.main_layout.addWidget(self.content)

@@ -1,0 +1,1 @@
+'PIL' 'scipy' 'matplotlib' 'certifi' 'ffmpeg' 'olver' 'keras' 'nnfs' 'opencv-python' 'Markdown' 'charset-normalizer' 'fonttools' 'Jinja2' 'requests' 'urllib3' 'yapf' 'wheel' 'Pillow' 'libclang' 'click' 'altgraph' 'cycler' 'h5py' 'optree' 'packaging' 'Pygments' 'pyparsing'
